@@ -15,6 +15,7 @@ import (
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/api/types/filters"
+	"github.com/versus/eyeswarm/docker"
 )
 
 const (
@@ -58,7 +59,8 @@ func main()  {
 					log.Fatalln("err: ", err)
 				}
 				for _, container := range containers {
-						fmt.Printf("%s %s %s\n", container.ID[:10], container.Image, container.State)
+					    instance ,_ := docker.NewContainer(container.ID[:10], container.Image)
+						fmt.Printf("%s %s %s\n", instance.Id, instance.Image, instance.Tag)
 
 				}
 			case <-sig:
