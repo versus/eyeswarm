@@ -4,7 +4,6 @@ import (
 	"flag"
 	"log"
 	"github.com/BurntSushi/toml"
-	 eyeswarm "github.com/versus/eyeswarm/types"
 	"os"
 	"os/signal"
 	"syscall"
@@ -23,7 +22,7 @@ const (
 	Author  = " by Valentyn Nastenko [nastenko@zeoalliance.com]"
 )
 
-var conf eyeswarm.Config
+var conf docker.Config
 
 func main()  {
 	log.Println("eyeswarm client ", Version, Author)
@@ -60,7 +59,7 @@ func main()  {
 				}
 				for _, container := range containers {
 					    instance ,_ := docker.NewContainer(container.ID[:10], container.Image)
-						fmt.Printf("%s %s %s\n", instance.Id, instance.Image, instance.Tag)
+						log.Printf("%s %s %s\n", instance.Id, instance.Image, instance.Tag)
 
 				}
 			case <-sig:

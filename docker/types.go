@@ -1,4 +1,4 @@
-package types
+package docker
 
 
 type Service struct {

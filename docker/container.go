@@ -1,13 +1,12 @@
 package docker
 
 import (
-	"github.com/versus/eyeswarm/types"
 	"strings"
 )
 
-func NewContainer(id string, image string)(*types.Container, error){
+func NewContainer(id string, image string)(*Container, error){
 	tag := strings.Split(strings.Split(image, "@")[0], ":")[1]
-	container := types.Container{
+	container := Container{
 		Id:id,
 		Tag:tag,
 		Image:image,
@@ -15,3 +14,4 @@ func NewContainer(id string, image string)(*types.Container, error){
 
 	return &container, nil
 }
+
