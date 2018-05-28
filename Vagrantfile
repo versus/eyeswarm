@@ -22,11 +22,13 @@ Vagrant.configure("2") do |config|
       ip = "172.17.8.#{i+10}"
       config.vm.network :private_network, ip: ip
       config.vm.provision :file, :source => "deploy.sh", :destination => "/tmp/vagrantfile-user-data"
+      config.vm.provision "shell" do |s|
+          s.inline = "cd /tmp; bash /tmp/vagrantfile-user-data"
+          s.privileged = true
+       end
     end
-  
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
-  # SHELL
+
+
+
 end
 end
